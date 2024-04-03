@@ -1,11 +1,11 @@
-#High's Hardware
+# High's Hardware
 
 Important Dates:
 
 - Assigned: April 3, 2024\
 - Deadline: April 24, 2024 at 11:59 PM EST
 
-##What To Do:
+## What To Do:
 
 Mini-Project Option A April 3, 2024
 
@@ -17,7 +17,7 @@ The project is meant to be completed modularly, meaning you'll be working on sev
 
 The goal of this project is for your team of 2-3 students to collaborate to produce an impressive object-oriented program that you'd be proud to show off to demonstrate your skills you've been honing over the semester. Like a real information system implementation, you'll be asked to create solutions that work inside of existing business infrastructure, such as predefined file formats. Unlike the kinds of information systems that would be used to solve this problem in the real-world, there's no incorporation of databases or external/internal application-programming interfaces (APIs).
 
-##Starter Files
+## Starter Files
 
 The starter files are minimal for the project; however they do contain a directory/package structure that you must follow in your solutions. The provided file FileUtils, is NOT complete and have methods and fields that must be completed on your own. Other classes, interfaces, etc. that you must complete from scratch are listed in this document.
 
@@ -25,7 +25,7 @@ Mini-Project Option A: High's Hardware 2 A Note on Using External Libraries
 
 The starter code uses no external libraries like dependency managers one might use in modern Java development. These go beyond the scope of the course and as such aren't focused on in the project. If you are familiar with these or want to be and can think of some practical use for them in aiding your development process, you are encouraged to research them more with your group. Please ask your TAs for permission before incorporating them into your project, though. The project, however, should be fully completable using the standard Java library and material you've seen in class. Your JDK includes quite a bit of functionality we haven't seen in the course, too!
 
-##File Structure
+## File Structure
 
 You will end up with a file structure similar to the following:
 
@@ -53,7 +53,7 @@ The Initial Program State - Important Notes:
 
     ∗ This will call FileUtils.readInventoryFromFile that reads in all the items from inventory.txt, and uses System.exit to exit the program if an exception is thrown.
 
-Mini-Project Option A: High's Hardware 4
+### Mini-Project Option A: High's Hardware 4
 
 ∗ Each item will be its own line in the file, and will be of the form "<itemName> <itemQuantity> <itemCost> <itemAisle>". The inventory.txt file is comma-delimited.
 
