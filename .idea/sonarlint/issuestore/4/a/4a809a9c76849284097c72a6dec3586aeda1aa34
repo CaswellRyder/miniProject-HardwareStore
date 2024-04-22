@@ -1,0 +1,33 @@
+
+¨
+java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(Çï÷–J$3579fc03-6002-4317-85c0-9b3d8ce515e4
+f	java:S106"+Replace this use of System.out by a logger.(ºªÖ“J$2579da13-8fb4-4494-94d7-af490b47cf4e
+n
+java:S1135"2Complete the task associated to this TODO comment.(…ïœ†J$6438ea04-752c-4e8d-8bd4-07ad79431e19
+n
+java:S1135"2Complete the task associated to this TODO comment.(…ïœ†J$fc62ba93-3494-4051-a379-bea549aba067
+n
+java:S1135"2Complete the task associated to this TODO comment.(…ïœ†J$92b7f8ae-92e7-4b18-ac8b-aa694b5ca665
+n
+java:S1135$"2Complete the task associated to this TODO comment.(…ïœ†J$f932eb7c-bdce-4761-96ab-2e3df53b1f75
+g
+java:S1168)"+Return an empty collection instead of null.(¥¹ïJ$12d7e087-1b73-4ab9-8802-837cdf9e3420
+n
+java:S1135("2Complete the task associated to this TODO comment.(…ïœ†J$1d17596e-7c6c-459d-9fa6-a7c1aa89d097
+n
+java:S1135-"2Complete the task associated to this TODO comment.(…ïœ†J$2f4a8693-f007-4d5d-81cd-060ef83cb7d2
+n
+java:S11351"2Complete the task associated to this TODO comment.(…ïœ†J$0fb13a8b-47c0-4d9b-b7c2-12f35c6f1fa5
+i
+java:S1068
+"-Remove this unused "inputFile" private field.(§í—»J$cd13df1e-dc7a-42b9-a60d-7e7f2df601a3
+j
+java:S1068".Remove this unused "outputFile" private field.(ñÕé‘J$643e027d-a45f-4afe-8c90-96d86dbd0c85
+n
+java:S1068"-Remove this unused "staffFile" private field.(ş¤¬´ÿÿÿÿÿJ$aab85f75-d957-4d39-a470-8118d7cbe79c
+z
+java:S1068"9Remove this unused "staffAvailabilityFile" private field.(ü·úúÿÿÿÿJ$3a558743-9525-4604-8164-343d188c9486
+w
+java:S1068"6Remove this unused "shiftSchedulesFile" private field.(Ó¸Œ…ÿÿÿÿÿJ$0df12334-58dd-429b-b727-97b55692c308
+v
+java:S1068"5Remove this unused "storeScheduleFile" private field.(ìÁâÇıÿÿÿÿJ$ed8bb05c-b881-4382-a130-813b0706768c
