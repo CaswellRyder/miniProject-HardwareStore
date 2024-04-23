@@ -1,0 +1,30 @@
+// Sample Input 1
+
+ADD ‘Cordless Screwdriver’ 30  1  2
+COST ‘Multi Bit Ratcheting’
+FIND ‘Thermostat’
+FIND ‘Hand Truck’
+SELL ‘Hammer’ 1
+QUANTITY ‘Paint Can’
+FIRE ‘Joshua Filler’
+HIRE 'Lewis hamilton' 35 G
+PROMOTE 'Lewis hamilton' M
+SCHEDULE
+SAW
+EXIT
+
+
+// Sample Input 2
+
+ADD 'Garden Rakes’ 10  1  3
+COST ‘Shovel’’
+FIND ‘Hammer’
+FIND ‘Digging Forks’
+SELL ‘Pilers’ 2
+QUANTITY ‘Cutter’
+FIRE ‘Will Boland’
+HIRE 'Michael Scott' 28 C
+PROMOTE 'Michael Scott' G
+SCHEDULE
+SAW
+EXIT
