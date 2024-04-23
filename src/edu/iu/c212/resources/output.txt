@@ -1,33 +1,25 @@
-// Sample Output 1
 
-Cordless Screwdriver was added to inventory
-Multi Bit Ratcheting: $29
-ERROR: Thermostat cannot be found
-Performing store lookup for Hand Truck
-1 Hammer was sold
-3
-Joshua Filler was fired
-Lewis Hamilton has been hired as a Gardner
-Lewis Hamilton was promoted to Manager
-Schedule created.
-Planks sawed.
-Thank you for visiting High’s Hardware and Gardening!
+==================================
+Sawed planks
 
+==================================
+Sawed planks
 
-// Sample Output 2
+==================================
+Sawed planks (2024-04-22 23:22:19):
 
-Garden Rakes was added to inventory
-Shovel: $55
-ERROR: Hammer cannot be found
-Performing store lookup for Digging Forks
-2 Pilers was sold
-1
-Joshua Filler was fired
-Michael Scott has been hired as a Cashier
-Michael Scott was promoted to Gardner
-Schedule created.
-Planks sawed.
-Thank you for visiting High’s Hardware and Gardening!
-Schedule created.
-Planks sawed.
-Thank you for visiting High’s Hardware and Gardening!
+==================================
+Sawed planks (2024-04-22 23:26:44):
+
+==================================
+Sawed planks (2024-04-22 23:28:09):
+
+==================================
+Planks sawed (2024-04-22 23:42:40):
+'Plank-616',379456,1,1
+'Plank-195',38025,4,1
+'Plank-123',38025,4,1
+'Plank-456',38025,4,1
+
+==================================
+Sawed planks (2024-04-22 23:44:25):

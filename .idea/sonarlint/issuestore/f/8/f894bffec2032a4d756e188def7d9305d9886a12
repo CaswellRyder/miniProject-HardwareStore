@@ -1,18 +1,18 @@
 
-b
-java:S2095"EUse try-with-resources or close this "Scanner" in a "finally" clause.(Ÿæö°8—Î…Äğ1
-k
-java:S2095"IUse try-with-resources or close this "PrintWriter" in a "finally" clause.(œ¢ÆÍıÿÿÿÿ8£Î…Äğ1
-Z
-java:S1854"=Remove this useless assignment to local variable "inputFile".(¾Õê©8¦Î…Äğ1
-`
-java:S1854">Remove this useless assignment to local variable "outputFile".(œ¢ÆÍıÿÿÿÿ8¦Î…Äğ1
-[
-java:S1854"9Remove this useless assignment to local variable "hours".(ß‰Äóùÿÿÿÿ8¦Î…Äğ1
-K
-java:S1481".Remove this unused "inputFile" local variable.(¾Õê©8­Î…Äğ1
-Q
-java:S1481"/Remove this unused "outputFile" local variable.(œ¢ÆÍıÿÿÿÿ8®Î…Äğ1
-L
-java:S1481"*Remove this unused "hours" local variable.(ß‰Äóùÿÿÿÿ8²Î…Äğ1
-G	java:S106"+Replace this use of System.out by a logger.(³ĞÎÒ8³Î…Äğ1
+‘
+java:S2095"IUse try-with-resources or close this "PrintWriter" in a "finally" clause.(œ¢ÆÍıÿÿÿÿ8£Î…Äğ1J$b7bc4a12-f68d-4cf0-a961-9b5f4a55300c
+ˆ
+java:S2095"EUse try-with-resources or close this "Scanner" in a "finally" clause.(Ÿæö°8—Î…Äğ1J$d6c59768-26bf-4662-89ef-d75709023155
+€
+java:S1854"=Remove this useless assignment to local variable "inputFile".(¾Õê©8¦Î…Äğ1J$538f14e5-9e8d-438b-b7db-052a7828ea04
+†
+java:S1854">Remove this useless assignment to local variable "outputFile".(œ¢ÆÍıÿÿÿÿ8¦Î…Äğ1J$91bcc7ab-54b4-45c9-b87c-c1dc2c82f9a3
+
+java:S1854"9Remove this useless assignment to local variable "hours".(ß‰Äóùÿÿÿÿ8¦Î…Äğ1J$52d174e4-9925-4455-824c-614112cd9904
+q
+java:S1481".Remove this unused "inputFile" local variable.(¾Õê©8­Î…Äğ1J$6aa4a1d1-9ab5-47d0-9c1e-c68dd575077e
+w
+java:S1481"/Remove this unused "outputFile" local variable.(œ¢ÆÍıÿÿÿÿ8®Î…Äğ1J$18b81be6-afa9-46e2-aee6-c2c6cb4f7b6b
+r
+java:S1481"*Remove this unused "hours" local variable.(ß‰Äóùÿÿÿÿ8²Î…Äğ1J$ac3a41aa-96b3-43dd-8daf-5df7c617e97f
+m	java:S106"+Replace this use of System.out by a logger.(³ĞÎÒ8³Î…Äğ1J$67230f14-3720-4bda-a30d-49bf385b376a

@@ -7,10 +7,10 @@
 'Fiskars',22,20,7
 'Hand trucks',29,8,3
 'Gas chain saw',39,3,4
-'Wheel Barrow',100,7,5
+'WheelBarrow',100,7,5
 'Shears',30,4,8
 'Cotton Hoe',43,2,8
-'Pottato Hook',54,5,3
+'Potato Hook',54,5,3
 'Drill Forks',68,10,7
 'Potting Soils',9,12,4
 'Rakes',20,20,6
@@ -20,3 +20,7 @@
 'Wood',14,80,12
 'Water Nosel',18,24,11
 'Leaf Blower',91,18,8
+'Plank-616',379456,1,1
+'Plank-195',38025,4,1
+'Plank-123',38025,4,1
+'Plank-456',38025,4,1

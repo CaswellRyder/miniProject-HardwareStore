@@ -27,18 +27,10 @@ N
 src/edu/iu/c212/StoreMain.java,4/6/46ba1768e397dd6390c0b00aba2905cd64cfa08e
 K
 src/edu/iu/c212/IStore.java,1/4/14e355f1e67bb132ff796355a0a3ff0ad76051d1
-
-OMiniProj/ProjectStarterCode/ProjectStarterCode/src/edu/iu/c212/models/Item.java,8/5/8530272e90ecf6f6b62b5cd271986623b9c16950
-€
-PMiniProj/ProjectStarterCode/ProjectStarterCode/src/edu/iu/c212/models/Staff.java,2/1/215fba9a734d507aeb73daeb148ec4bcd337c584
-ƒ
-SMiniProj/ProjectStarterCode/ProjectStarterCode/src/edu/iu/c212/utils/FileUtils.java,9/a/9ab9c5a88b53e15dc4fff233f37bdc8b91bfef60
-‹
-[MiniProj/ProjectStarterCode/ProjectStarterCode/src/edu/iu/c212/programs/StaffScheduler.java,3/f/3fed93496c104f068beb1f64c15e774f2f29096d
-a
-1src/edu/iu/c212/programs/SawPrimePlanks test.java,8/7/87225e3fc9c9c84651a3e5f8517fcb0440d6c066
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 M
 miniProject-HardwareStore.iml,8/5/85df8b0616ac78e49f073be9c91274b6138f8d46
+`
+0src/edu/iu/c212/programs/SawPrimePlanksTest.java,0/e/0e2ce4f5bedfd5af14b1cfdcf36dc9258e705bb1
