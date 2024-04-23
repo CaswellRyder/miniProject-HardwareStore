@@ -1,29 +1,24 @@
 package edu.iu.c212.models;
 
 public class Staff {
-    private String fullname;
+    //Instance Variables
+    private String fullName;
     private int age;
     private String role;
-    private String availablity;
+    private String availability;
 
+    //Constructor
     public Staff(String name, int age, String role, String av) {
-        this.fullname = name;
+        this.fullName = name;
         this.age = age;
         this.role = role;
-        this.availablity = av;
+        this.availability = av;
     }
 
-    public String getName() {
-        return null;
-    }
-    public int getAge() {
-        return 0;
-    }
-    public String getRole() {
-        return null;
-    }
-    public String getAvailability() {
-        return null;
-    }
+    //Getters
+    public String getName() {return fullName;}
+    public int getAge() {return age;}
+    public String getRole() {return role;}
+    public String getAvailability() {return availability;}
 
 }

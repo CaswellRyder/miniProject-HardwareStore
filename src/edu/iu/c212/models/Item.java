@@ -1,46 +1,23 @@
 package edu.iu.c212.models;
 
 public class Item {
+    //Instance Variables
     private String name;
     private double price;
     private int quantity;
     private int aisleNum;
 
-    public Item(String name, double price, int quantity) {
+    //Constructor
+    public Item(String name, double price, int quantity, int aisleNum) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.aisleNum = aisleNum;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public int getAisle() {
-        return aisleNum;
-    }
-//
-//    public void setPrice(double price) {
-//        this.price = price;
-//    }
-//
-//    public void setQuantity(int quantity) {
-//        this.quantity = quantity;
-//    }
-//
-//    public int setAisle() {
-//        return aisleNum;
-//    }
-
-    public String toString() {
-        return name + " $" + price + " " + quantity;
-    }
+    //Getters
+    public String getName() {return name;}
+    public double getPrice() {return price;}
+    public int getQuantity() {return quantity;}
+    public int getAisle() {return aisleNum;}
 }

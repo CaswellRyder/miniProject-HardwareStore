@@ -1,0 +1,37 @@
+
+‚
+java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(Çï÷–
+@	java:S106"+Replace this use of System.out by a logger.(ºªÖ“
+A
+java:S1168"+Return an empty collection instead of null.(¥¹ï
+H
+java:S1135"2Complete the task associated to this TODO comment.(…ïœ†
+A
+java:S1168"+Return an empty collection instead of null.(¥¹ï
+H
+java:S1135"2Complete the task associated to this TODO comment.(…ïœ†
+H
+java:S1135"2Complete the task associated to this TODO comment.(…ïœ†
+H
+java:S1135$"2Complete the task associated to this TODO comment.(…ïœ†
+A
+java:S1168)"+Return an empty collection instead of null.(¥¹ï
+H
+java:S1135("2Complete the task associated to this TODO comment.(…ïœ†
+H
+java:S1135-"2Complete the task associated to this TODO comment.(…ïœ†
+H
+java:S11351"2Complete the task associated to this TODO comment.(…ïœ†
+C
+java:S1068
+"-Remove this unused "inputFile" private field.(§í—»
+D
+java:S1068".Remove this unused "outputFile" private field.(ñÕé‘
+H
+java:S1068"-Remove this unused "staffFile" private field.(ş¤¬´ÿÿÿÿÿ
+T
+java:S1068"9Remove this unused "staffAvailabilityFile" private field.(ü·úúÿÿÿÿ
+Q
+java:S1068"6Remove this unused "shiftSchedulesFile" private field.(Ó¸Œ…ÿÿÿÿÿ
+P
+java:S1068"5Remove this unused "storeScheduleFile" private field.(ìÁâÇıÿÿÿÿ
