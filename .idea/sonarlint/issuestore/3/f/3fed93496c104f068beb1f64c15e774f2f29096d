@@ -1,0 +1,18 @@
+
+[
+java:S2095"EUse try-with-resources or close this "Scanner" in a "finally" clause.(Ÿæö°
+d
+java:S2095"IUse try-with-resources or close this "PrintWriter" in a "finally" clause.(œ¢ÆÍıÿÿÿÿ
+S
+java:S1854"=Remove this useless assignment to local variable "inputFile".(¾Õê©
+Y
+java:S1854">Remove this useless assignment to local variable "outputFile".(œ¢ÆÍıÿÿÿÿ
+T
+java:S1854"9Remove this useless assignment to local variable "hours".(ß‰Äóùÿÿÿÿ
+D
+java:S1481".Remove this unused "inputFile" local variable.(¾Õê©
+J
+java:S1481"/Remove this unused "outputFile" local variable.(œ¢ÆÍıÿÿÿÿ
+E
+java:S1481"*Remove this unused "hours" local variable.(ß‰Äóùÿÿÿÿ
+@	java:S106"+Replace this use of System.out by a logger.(³ĞÎÒ
