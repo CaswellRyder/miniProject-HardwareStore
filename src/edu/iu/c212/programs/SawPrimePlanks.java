@@ -28,7 +28,7 @@ public class SawPrimePlanks {
         return factors;
     }
 
-    public static void main(String[] args) {
+    public void sawPrimePlanks() {
         String inventoryFile = "src/edu/iu/c212/resources/inventory.txt";
         String outputInventoryFile = "src/edu/iu/c212/resources/inventory.txt";
 
@@ -47,7 +47,7 @@ public class SawPrimePlanks {
                     int plankLength = Integer.parseInt(plankName.split("-")[1]);
 
                     List<Integer> primeFactors = getPrimeFactors(plankLength);
-                    int price = plankLength * plankLength;
+                    int price = (int) Math.pow(plankLength, 2);  // Update this line
 
                     for (int factor : primeFactors) {
                         writer.write("'Plank-" + factor + "'," + price + ",1,1\n");
