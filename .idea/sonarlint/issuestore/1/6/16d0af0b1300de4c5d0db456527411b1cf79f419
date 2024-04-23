@@ -1,4 +1,11 @@
 
-•	java:S100	"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê×µ¥ÿÿÿÿÿ8Í–ÂÈğ1J$d853e9eb-39ca-4862-9539-240baa78a2c1
-r	java:S106<"+Replace this use of System.out by a logger.(Ş¥›Ëøÿÿÿÿ8Éğ¯Èğ1J$cab336fe-e0cb-485d-aaf9-b8df7b202a8d
-r	java:S106>"+Replace this use of System.out by a logger.(®úİ×ûÿÿÿÿ8Éğ¯Èğ1J$e3e2f4e4-c2cc-4cb0-8a17-1de37ee7dd44
+”
+java:S2095'"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(ã‡¥Ãûÿÿÿÿ8¾”Íğ1J$f717e87c-12fe-4f7d-a945-0b4e63b367f3
+”
+java:S2095("LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(¨º©Íşÿÿÿÿ8½”Íğ1J$38103097-e336-46d6-87b6-87b6dfc86a72
+–
+java:S4042J"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(À®¯üÿÿÿÿ8ÙßëÌğ1J$7bc8ef6c-483e-446d-b718-a2cd31eeca6e
+r	java:S106L"+Replace this use of System.out by a logger.(™ÄÆøÿÿÿÿ8ÚßëÌğ1J$b28b9870-bb16-4c80-abc5-2cd3387955e9
+m	java:S106O"+Replace this use of System.out by a logger.(Íİ‚½8ÚßëÌğ1J$c73dead9-d5f7-4685-8d00-63a9727489c7
+r	java:S106R"+Replace this use of System.out by a logger.(¸ëÄışÿÿÿÿ8ÛßëÌğ1J$ea2a26be-5c30-41b7-a882-0bad8f61b95e
+m	java:S106T"+Replace this use of System.out by a logger.(Ú†ê‚8ÛßëÌğ1J$b3284e9b-07ee-4830-b34a-ec14bdb856cc
