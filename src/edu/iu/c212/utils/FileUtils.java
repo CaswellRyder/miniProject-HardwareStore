@@ -21,19 +21,34 @@ public class FileUtils {
     private static File shiftSchedulesFile = new File("src/edu/iu/c212/resources/shift_schedules_IN.txt");
     private static File storeScheduleFile = new File("src/edu/iu/c212/resources/store_schedule_OUT.txt");
 
+    /**
+     * Reads the inventory from the "inventory.txt" file and returns a list of strings.
+     *
+     * @return A list of strings representing the inventory items.
+     * @throws IOException If an error occurs while reading the file.
+     */
     public static List<String> readInventoryFromFile() throws IOException {
         List<String> inventory = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(inventoryFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                inventory.add(line);
+                // Skip comment lines starting with "//"
+                if (!line.trim().startsWith("//")) {
+                    inventory.add(line);
+                }
             }
         }
         return inventory;
     }
 
+    /**
+     * Writes the updated inventory list to the "inventory.txt" file.
+     *
+     * @param inventory The updated inventory list to be written to the file.
+     * @throws IOException If an error occurs while writing to the file.
+     */
     public static void writeInventoryToFile(List<String> inventory) throws IOException {
-        try (FileWriter writer = new FileWriter(inventoryFile)) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(inventoryFile))) {
             for (String item : inventory) {
                 writer.write(item);
                 writer.write(System.lineSeparator());
