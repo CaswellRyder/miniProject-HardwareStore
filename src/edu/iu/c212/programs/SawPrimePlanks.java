@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class SawPrimePlanks {
-    public static void main(String[] args) {
+    public void sawPrimePlanks() {
         List<String> inventory;
         try {
             // Read the initial inventory from a file
