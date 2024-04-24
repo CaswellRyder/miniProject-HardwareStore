@@ -6,7 +6,7 @@ import java.util.*;
 import edu.iu.c212.models.Item;
 import edu.iu.c212.models.Staff;
 import edu.iu.c212.utils.FileUtils;
-import edu.iu.c212.interfaces.IStore;
+import edu.iu.c212.IStore;
 import edu.iu.c212.programs.*;
 
 public class Store implements IStore {
@@ -64,18 +64,18 @@ public class Store implements IStore {
 	 * Loads the inventory from the specified file.
 	 */
 	private void loadInventory(String filename) {
-		try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-			String line;
-			while ((line = reader.readLine()) != null) {
+		List<String> itemLines = getItemsFromFile();
+		if (itemLines != null) {
+			for (String line : itemLines) {
 				String[] tokens = line.split(",");
-				String itemName = tokens[0];
+				String itemName = tokens[0].replaceAll("'", "");
 				double itemCost = Double.parseDouble(tokens[1]);
 				int itemQuantity = Integer.parseInt(tokens[2]);
 				int itemAisle = Integer.parseInt(tokens[3]);
 				inventory.put(itemName, new Item(itemName, itemCost, itemQuantity, itemAisle));
 			}
-		} catch (IOException e) {
-			System.err.println("Error loading inventory: " + e.getMessage());
+		} else {
+			System.err.println("Error loading inventory: Inventory file is empty or cannot be read");
 		}
 	}
 

@@ -144,4 +144,8 @@ public class SawPrimePlanks {
             e.printStackTrace();
         }
     }
+    public static void main(String [] args) {
+        SawPrimePlanks test = new SawPrimePlanks();
+        test.sawPrimePlanks();
+    }
 }
