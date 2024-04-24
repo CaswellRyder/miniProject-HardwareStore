@@ -57,14 +57,14 @@ public class FileUtils {
 
     public List<Staff> readStaffFromFile() throws IOException {
         List<Staff> employees = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(staffFile))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(staffAvailabilityFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                String name = parts[0];
-                int age = Integer.parseInt(parts[1]);
-                String role = parts[2];
-                String availability = parts[3]; // Availability is stored as a string
+                String[] parts = line.split(" ");
+                String name = parts[0] + " " + parts[1];
+                int age = Integer.parseInt(parts[2]);
+                String role = parts[3];
+                String availability = String.join(".", parts).substring(4 + name.length() + role.length());
                 employees.add(new Staff(name, age, role, availability));
             }
         }
@@ -72,9 +72,9 @@ public class FileUtils {
     }
 
     public void writeStaffToFile(List<Staff> employees) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(staffFile))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(staffAvailabilityFile))) {
             for (Staff staff : employees) {
-                writer.write(staff.getName() + "," + staff.getAge() + "," + staff.getRole() + "," + staff.getAvailability());
+                writer.write(staff.getName() + " " + staff.getAge() + " " + staff.getRole() + " " + staff.getAvailability());
                 writer.newLine();
             }
         }
