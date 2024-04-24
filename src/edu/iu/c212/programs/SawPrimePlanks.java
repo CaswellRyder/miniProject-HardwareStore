@@ -18,15 +18,15 @@ public class SawPrimePlanks {
             return; // Exit the program if an error occurs
         }
 
-        // Process the inventory to generate new planks
+        // Process inventory to generate new planks
         processInventory(inventory);
 
-        // Save the updated inventory back to the file
+        // Save updated inventory back to the file
         saveUpdatedInventory(inventory);
     }
 
     /**
-     * Processes the inventory list to generate new planks with prime lengths.
+     * Processes inventory list to generate new planks with prime lengths.
      * The new planks are added to the same inventory list.
      *
      * @param inventory The list of inventory items to process.
@@ -37,9 +37,10 @@ public class SawPrimePlanks {
         // Iterate through each item in the inventory
         for (String item : inventory) {
             // Check if the item represents a plank
-            if (item.startsWith("Plank-")) {
+            if (item.startsWith("'Plank-") && item.contains(",")) {
                 String[] itemParts = item.split(",");
-                int length = Integer.parseInt(itemParts[0].substring(6));
+                String lengthString = itemParts[0].substring(6).replaceAll("[^0-9]", "");
+                int length = Integer.parseInt(lengthString);
 
                 // Find the prime length of the plank
                 int primeLength = findPrimeLength(length);
