@@ -10,9 +10,9 @@ public interface IStore {
 
 	List<Staff> getStaffFromFile();
 
-	void saveItemsFromFile();
+	void saveItemsToFile();
 
-	void saveStaffFromFile();
+	void saveStaffToFile();
 
 	void takeAction() throws IOException;
 }

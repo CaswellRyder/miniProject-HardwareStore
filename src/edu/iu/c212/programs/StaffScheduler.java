@@ -17,9 +17,9 @@ public class StaffScheduler {
 	
 	public void scheduleStaff() {
 		HashMap<String, ArrayList<String>> workers = new HashMap<>();
-		String shiftIN = "C:/Users/benja/OneDrive/Documents/C212 Documents/Projects/MiniProjectMain/src/edu/iu/c212/resources/shift_schedules_IN.txt";
-		String staffAvailIn = "C:/Users/benja/OneDrive/Documents/C212 Documents/Projects/MiniProjectMain/src/edu/iu/c212/resources/staff_availability_IN.txt";
-		String storeSchedOut = "C:/Users/benja/OneDrive/Documents/C212 Documents/Projects/MiniProjectMain/src/edu/iu/c212/resources/store_schedule_OUT.txt";
+		String shiftIN = "src/edu/iu/c212/resources/shift_schedules_IN.txt";
+		String staffAvailIn = "src/edu/iu/c212/resources/staff_availability_IN.txt";
+		String storeSchedOut = "src/edu/iu/c212/resources/store_schedule_OUT.txt";
 		
 		try {
 			int totalHours = 0;

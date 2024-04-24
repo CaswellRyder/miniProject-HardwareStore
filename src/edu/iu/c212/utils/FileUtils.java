@@ -16,7 +16,7 @@ public class FileUtils {
     private static File inputFile = new File("src/edu/iu/c212/resources/input.txt");
     private static File outputFile = new File("src/edu/iu/c212/resources/output.txt");
     private static File inventoryFile = new File("src/edu/iu/c212/resources/inventory.txt");
-    private static File staffAvailabilityFile = new File("src/edu/iu/c212/resources/input.txt/resources/staff_availability_IN.txt");
+    private static File staffAvailabilityFile = new File("src/edu/iu/c212/resources/resources/staff_availability_IN.txt");
     private static File shiftSchedulesFile = new File("src/edu/iu/c212/resources/shift_schedules_IN.txt");
     private static File storeScheduleFile = new File("src/edu/iu/c212/resources/store_schedule_OUT.txt");
 
