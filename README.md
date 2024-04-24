@@ -9,8 +9,6 @@ Important Dates:
 
 Mini-Project Option A April 3, 2024
 
-![page1image51726368](blob:https://euangoddard.github.io/d4418cdb-c82b-4894-add0-54b1db0d8a75)
-
 For your final project, you are going to need to use what you've learned this semester to create a store management system for High's Hardware and Gardening that will solve some of their logistical problems, including sawing planks to certain lengths, finding products in the store, and generating schedules for staff shifts. The program works almost entirely via I/O .txt files, which are read in at the start of the program, modified after each command (if necessary), and are used to create output files.
 
 The project is meant to be completed modularly, meaning you'll be working on several self- contained pieces that can be individually tested. In particular, when we as graders (and you as "testers" of your own work) go to evaluate your projects, we'll be using input files that run all the parts of the program and check for the correctness of the changes to the files and contents of the output files.
@@ -28,8 +26,6 @@ The starter code uses no external libraries like dependency managers one might u
 ## File Structure
 
 You will end up with a file structure similar to the following:
-
-![page2image51760176](blob:https://euangoddard.github.io/0986778f-a89f-4a51-9b1c-12abb851118f)
 
 Mini-Project Option A: High's Hardware 3 High's Hardware
 
