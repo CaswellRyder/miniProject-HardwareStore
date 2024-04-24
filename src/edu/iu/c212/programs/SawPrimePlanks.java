@@ -1,87 +1,114 @@
 package edu.iu.c212.programs;
 
-import java.io.*;
-import java.util.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import edu.iu.c212.utils.FileUtils;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SawPrimePlanks {
-    public static List<Integer> getPrimeFactors(int num) {
-        List<Integer> factors = new ArrayList<>();
-
-        while (num % 2 == 0) {
-            factors.add(2);
-            num /= 2;
+    public static void main(String[] args) {
+        List<String> inventory;
+        try {
+            // Read the initial inventory from a file
+            inventory = FileUtils.readInventoryFromFile();
+        } catch (IOException e) {
+            System.out.println("Error occurred while reading inventory from file.");
+            e.printStackTrace();
+            return; // Exit the program if an error occurs
         }
 
-        for (int i = 3; i <= Math.sqrt(num); i += 2) {
-            while (num % i == 0) {
-                factors.add(i);
-                num /= i;
-            }
-        }
+        // Process the inventory to generate new planks
+        processInventory(inventory);
 
-        if (num > 2) {
-            factors.add(num);
-        }
-
-        return factors;
+        // Save the updated inventory back to the file
+        saveUpdatedInventory(inventory);
     }
 
-    public void sawPrimePlanks() {
-        String inventoryFile = "src/edu/iu/c212/resources/inventory.txt";
-        String outputInventoryFile = "src/edu/iu/c212/resources/inventory.txt";
+    /**
+     * Processes the inventory list to generate new planks with prime lengths.
+     * The new planks are added to the same inventory list.
+     *
+     * @param inventory The list of inventory items to process.
+     */
+    private static void processInventory(List<String> inventory) {
+        List<String> newPlanks = new ArrayList<>();
 
-        try {
-            File inputFile = new File(inventoryFile);
-            File tempFile = new File("temp.txt");
+        // Iterate through each item in the inventory
+        for (String item : inventory) {
+            // Check if the item represents a plank
+            if (item.startsWith("Plank-")) {
+                String[] itemParts = item.split(",");
+                int length = Integer.parseInt(itemParts[0].substring(6));
 
-            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+                // Find the prime length of the plank
+                int primeLength = findPrimeLength(length);
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.startsWith("'Plank-")) {
-                    String[] parts = line.split("'")[1].split(",");
-                    String plankName = parts[0];
-                    int plankLength = Integer.parseInt(plankName.split("-")[1]);
+                // Calculate the quantity of new planks based on the prime length
+                int quantity = calculateQuantity(length, primeLength);
 
-                    List<Integer> primeFactors = getPrimeFactors(plankLength);
-                    int price = (int) Math.pow(plankLength, 2);  // Update this line
+                // Calculate the price of the new planks based on the prime length
+                int price = primeLength * primeLength;
 
-                    for (int factor : primeFactors) {
-                        writer.write("'Plank-" + factor + "'," + price + ",1,1\n");
-                    }
-                } else {
-                    writer.write(line + "\n");
-                }
+                // Generate the new plank item string
+                String newPlankName = "Plank-" + primeLength;
+                String newPlankItem = newPlankName + "," + price + "," + quantity + "," + primeLength;
+                newPlanks.add(newPlankItem);
             }
+        }
 
-            reader.close();
-            writer.close();
+        // Add the new planks to the inventory list
+        inventory.addAll(newPlanks);
+    }
 
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            String formattedDateTime = now.format(formatter);
+    /**
+     * Finds the prime length of a given length by recursively dividing the length
+     * by prime factors until it becomes prime.
+     *
+     * @param length The length to find the prime length for.
+     * @return The prime length.
+     */
+    private static int findPrimeLength(int length) {
+        for (int i = 2; i <= Math.sqrt(length); i++) {
+            if (length % i == 0) {
+                return findPrimeLength(length / i);
+            }
+        }
+        return length;
+    }
 
-            PrintWriter outputWriter = new PrintWriter(new FileWriter("src/edu/iu/c212/resources/output.txt", true));
-            outputWriter.println();
-            outputWriter.println("########################################");
-            outputWriter.println("Sawed planks (" + formattedDateTime + ")");
-            outputWriter.println("########################################");
-            outputWriter.close();
-
-            if (inputFile.delete()) {
-                if (!tempFile.renameTo(new File(outputInventoryFile))) {
-                    System.out.println("Error renaming the file.");
-                }
+    /**
+     * Calculates the quantity of new planks based on the original length and prime length.
+     *
+     * @param length      The original length of the plank.
+     * @param primeLength The prime length of the plank.
+     * @return The quantity of new planks.
+     */
+    private static int calculateQuantity(int length, int primeLength) {
+        int quantity = 1;
+        while (length > 1) {
+            if (length % primeLength == 0) {
+                quantity *= length / primeLength;
+                length /= primeLength;
             } else {
-                System.out.println("Error deleting the original file.");
+                break;
             }
+        }
+        return quantity;
+    }
 
-            System.out.println("Planks saved.");
+    /**
+     * Saves the updated inventory list to a file.
+     *
+     * @param inventory The updated inventory list to save.
+     */
+    private static void saveUpdatedInventory(List<String> inventory) {
+        try {
+            FileUtils.writeInventoryToFile(inventory);
+            System.out.println("Updated inventory saved to file.");
         } catch (IOException e) {
-            System.out.println("An error occurred: " + e.getMessage());
+            System.out.println("Error occurred while saving updated inventory to file.");
+            e.printStackTrace();
         }
     }
 }
