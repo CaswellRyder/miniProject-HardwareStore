@@ -33,6 +33,7 @@ public class SawPrimePlanks {
      */
     private static void processInventory(List<String> inventory) {
         List<String> newPlanks = new ArrayList<>();
+        List<String> otherItems = new ArrayList<>();
 
         // Iterate through each item in the inventory
         for (String item : inventory) {
@@ -52,11 +53,20 @@ public class SawPrimePlanks {
                 int price = primeLength * primeLength;
 
                 // Generate the new plank item string
-                String newPlankName = "Plank-" + primeLength;
-                String newPlankItem = newPlankName + "," + price + "," + quantity + "," + primeLength;
+                String newPlankName = "'Plank-" + primeLength + "'";
+                String newPlankItem = newPlankName + "," + price + "," + quantity + "," + "1";
                 newPlanks.add(newPlankItem);
+            } else {
+                // Add non-plank items to the otherItems list
+                otherItems.add(item);
             }
         }
+
+        // Clear the original inventory list
+        inventory.clear();
+
+        // Add non-plank items back to the inventory list
+        inventory.addAll(otherItems);
 
         // Add the new planks to the inventory list
         inventory.addAll(newPlanks);
