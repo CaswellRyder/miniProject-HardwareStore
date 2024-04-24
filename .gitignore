@@ -3,6 +3,7 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 .idea/
+.idea
 
 ### Eclipse ###
 .apt_generated
@@ -34,3 +35,11 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+*.pb
+.idea/sonarlint/issuestore/1/6/16d0af0b1300de4c5d0db456527411b1cf79f419
+.idea/sonarlint/issuestore/4/6/46ba1768e397dd6390c0b00aba2905cd64cfa08e
+.idea/sonarlint/issuestore/4/a/4a809a9c76849284097c72a6dec3586aeda1aa34
+.idea/sonarlint/issuestore/7/7/77f763e01d18ceb23052b3205b4ae02c0973cc0f
+.idea/sonarlint/issuestore/f/8/f894bffec2032a4d756e188def7d9305d9886a12
+.idea/sonarlint/issuestore/index.pb
+.idea/sonarlint/securityhotspotstore/index.pb
