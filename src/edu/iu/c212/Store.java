@@ -6,6 +6,8 @@ import java.util.*;
 import edu.iu.c212.models.Item;
 import edu.iu.c212.models.Staff;
 import edu.iu.c212.utils.FileUtils;
+import edu.iu.c212.interfaces.IStore;
+import edu.iu.c212.programs.*;
 
 public class Store implements IStore {
 
@@ -199,24 +201,6 @@ public class Store implements IStore {
 	}
 
 	/**
-	 * Saws planks in the inventory.
-	 */
-	private void sawPlanks(StringBuilder writer) throws IOException {
-		// Implementation for sawing planks
-		writer.append("Planks sawed.");
-		writer.append(System.lineSeparator());
-	}
-
-	/**
-	 * Creates a schedule for staff members.
-	 */
-	private void createSchedule(StringBuilder writer) throws IOException {
-		// Implementation for creating a schedule
-		writer.append("Schedule created.");
-		writer.append(System.lineSeparator());
-	}
-
-	/**
 	 * Sells an item and updates the inventory.
 	 */
 	private void sellItem(String[] tokens, StringBuilder writer) throws IOException {
@@ -263,6 +247,16 @@ public class Store implements IStore {
 			default:
 				return "Unknown Role";
 		}
+	}
+
+	private void sawPlanks(StringBuilder writer) {
+		SawPrimePlanks sawPrimePlanks = new SawPrimePlanks();
+		sawPrimePlanks.sawPrimePlanks();
+	}
+
+	private void createSchedule(StringBuilder writer) {
+		StaffScheduler staffScheduler = new StaffScheduler();
+		staffScheduler.scheduleStaff();
 	}
 
 	public void takeAction() throws IOException {
