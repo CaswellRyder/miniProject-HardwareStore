@@ -334,4 +334,8 @@ public class Store implements IStore {
 			System.err.println("Error writing output file: " + e.getMessage());
 		}
 	}
+	public static void main(String[] args) throws IOException {
+		Store storehigh = new Store();
+		storehigh.takeAction();
+	}
 }
