@@ -5,6 +5,8 @@ import edu.iu.c212.utils.FileUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class SawPrimePlanks {
     public static void main(String[] args) {
@@ -23,6 +25,9 @@ public class SawPrimePlanks {
 
         // Save updated inventory back to the file
         saveUpdatedInventory(inventory);
+
+        // Save a message to the output.txt file with the system date and time
+        saveCompletionMessage();
     }
 
     /**
@@ -119,6 +124,23 @@ public class SawPrimePlanks {
             System.out.println("Updated inventory saved to file.");
         } catch (IOException e) {
             System.out.println("Error occurred while saving updated inventory to file.");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Saves a message to the "output.txt" file with the system date and time.
+     */
+    private static void saveCompletionMessage() {
+        try {
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            String formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            String divider = "########################################";
+            String message = "Planks sawed: " + formattedDateTime;
+            FileUtils.writeLineToOutputFile(divider);
+            FileUtils.writeLineToOutputFile(message);
+        } catch (IOException e) {
+            System.out.println("Error occurred while saving completion message to file.");
             e.printStackTrace();
         }
     }
