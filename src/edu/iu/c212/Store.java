@@ -304,6 +304,7 @@ public class Store implements IStore {
 			switch (command) {
 				case "ADD":
 					addItem(tokens, output);
+					output.append(tokens[1] + "have been added.");
 					break;
 				case "COST":
 					getCost(tokens, output);
@@ -323,21 +324,26 @@ public class Store implements IStore {
 					break;
 				case "FIRE":
 					fireStaff(tokens, output);
+					output.append(tokens[1] + " has been fired.");
 					break;
 				case "HIRE":
 					hireStaff(tokens, output);
+					output.append(tokens[1] + " has been hired as a " + getRoleString(tokens[2]) + ".");
 					break;
 				case "PROMOTE":
 					promoteStaff(tokens, output);
+					output.append(tokens[1] + " has been promoted to a " + getRoleString(tokens[2]) + ".");
 					break;
 				case "SAW":
 					sawPlanks(output);
 					break;
 				case "SCHEDULE":
 					createSchedule(output);
+					output.append("Schedule Created.");
 					break;
 				case "SELL":
 					sellItem(tokens, output);
+					output.append(tokens[2] + tokens[1] + " was sold.");
 					break;
 				case "QUANTITY":
 					getQuantity(tokens, output);
