@@ -1,4 +1,24 @@
 ########################################
-Planks sawed: 2024-04-24 21:50:12
+Staff updated 2024-04-24 23:46:55
 ########################################
-Planks sawed: 2024-04-24 21:53:13
+Person fired and Staff updated 2024-04-24 23:46:55
+########################################
+Staff updated 2024-04-24 23:46:55
+########################################
+Person promoted 2024-04-24 23:46:55
+########################################
+Planks sawed: 2024-04-24 23:46:55
+Invalid input format for adding an item
+Invalid input format for adding an item
+Invalid input format for adding an item
+Invalid input format for adding an item
+Invalid input format for adding an item
+ERROR: Multibit cannot be found
+ERROR: 'Thermostat' cannot be found
+ERROR: Hammer could not be sold
+ERROR: Paint cannot be found
+Joshua Filler has been hired as a Gardening Expert
+Joshua Filler was fired
+Lewis Hamilton has been hired as a Gardening Expert
+Lewis Hamilton was promoted to Manager
+Thank you for visiting High's Hardware and Gardening!

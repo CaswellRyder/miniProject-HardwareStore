@@ -1,6 +1,8 @@
 package edu.iu.c212;
 
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import edu.iu.c212.models.Item;
@@ -85,20 +87,33 @@ public class Store implements IStore {
 	private void loadInventory(String filename) {
 		FileUtils temp = new FileUtils();
 		List<String> itemLines = null;
-		try{
+		try {
 			itemLines = temp.readInventoryFromFile();
-		}
-		catch(IOException e){
-
+		} catch (IOException e) {
+			System.err.println("Error loading inventory: " + e.getMessage());
 		}
 		if (itemLines != null) {
 			for (String line : itemLines) {
-				String[] tokens = line.split(",");
-				String itemName = tokens[0].replaceAll("'", "");
-				double itemCost = Double.parseDouble(tokens[1]);
-				int itemQuantity = Integer.parseInt(tokens[2]);
-				int itemAisle = Integer.parseInt(tokens[3]);
-				inventory.put(itemName, new Item(itemName, itemCost, itemQuantity, itemAisle));
+				String[] tokens;
+				if (line.contains(",")) {
+					tokens = line.split(",");
+				} else {
+					tokens = line.split("\\s+");
+					tokens[0] = tokens[0].replaceAll("'", "");
+				}
+				if (tokens.length == 4) {
+					String itemName = tokens[0];
+					try {
+						double itemCost = Double.parseDouble(tokens[1]);
+						int itemQuantity = Integer.parseInt(tokens[2]);
+						int itemAisle = Integer.parseInt(tokens[3]);
+						inventory.put(itemName, new Item(itemName, itemCost, itemQuantity, itemAisle));
+					} catch (NumberFormatException e) {
+						System.err.println("Error parsing item data for line: " + line);
+					}
+				} else {
+					System.err.println("Invalid item format for line: " + line);
+				}
 			}
 		} else {
 			System.err.println("Error loading inventory: Inventory file is empty or cannot be read");
@@ -142,23 +157,35 @@ public class Store implements IStore {
 	 * Adds a new item to the inventory.
 	 */
 	private void addItem(String[] tokens, StringBuilder writer) throws IOException {
-		// Find the index of the last quote
-		int lastQuoteIndex = tokens[0].lastIndexOf("'");
+		if (tokens.length >= 4) {
+			// Extract the item name (assuming it's the first token)
+			String itemName = tokens[0];
 
-		if (lastQuoteIndex != -1 && lastQuoteIndex > 0) {
-			// Extract the item name (excluding the quotes)
-			String itemName = tokens[0].substring(1, lastQuoteIndex);
+			try {
+				double itemCost = Double.parseDouble(tokens[1]);
+				int itemQuantity = Integer.parseInt(tokens[2]);
+				int itemAisle = Integer.parseInt(tokens[3]);
 
-			// Split the remaining tokens (price, quantity, aisle) by whitespace
-			String[] remainingTokens = tokens[0].substring(lastQuoteIndex + 1).trim().split("\\s+");
+				inventory.put(itemName, new Item(itemName, itemCost, itemQuantity, itemAisle));
+				writer.append(itemName).append(" was added to inventory");
+				writer.append(System.lineSeparator());
 
-			double itemCost = Double.parseDouble(remainingTokens[0]);
-			int itemQuantity = Integer.parseInt(remainingTokens[1]);
-			int itemAisle = Integer.parseInt(remainingTokens[2]);
-
-			inventory.put(itemName, new Item(itemName, itemCost, itemQuantity, itemAisle));
-			writer.append(itemName).append(" was added to inventory");
-			writer.append(System.lineSeparator());
+				try {
+					LocalDateTime currentDateTime = LocalDateTime.now();
+					String formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+					String divider = "########################################";
+					String message = "Item added and Inventory updated " + formattedDateTime;
+					FileUtils.writeLineToOutputFile(divider);
+					FileUtils.writeLineToOutputFile(message);
+				} catch (IOException e) {
+					System.out.println("Error occurred while saving completion message to file.");
+					e.printStackTrace();
+				}
+			} catch (NumberFormatException e) {
+				// Handle the case when the price, quantity, or aisle is not a valid number
+				writer.append("Invalid input format for adding an item");
+				writer.append(System.lineSeparator());
+			}
 		} else {
 			// Handle the case when the input format is invalid
 			writer.append("Invalid input format for adding an item");
@@ -175,6 +202,18 @@ public class Store implements IStore {
 		if (item != null) {
 			writer.append(itemName).append(": $").append(String.format("%.2f", item.getPrice()));
 			writer.append(System.lineSeparator());
+
+			try {
+				LocalDateTime currentDateTime = LocalDateTime.now();
+				String formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+				String divider = "########################################";
+				String message = "Cost found " + formattedDateTime;
+				FileUtils.writeLineToOutputFile(divider);
+				FileUtils.writeLineToOutputFile(message);
+			} catch (IOException e) {
+				System.out.println("Error occurred while saving completion message to file.");
+				e.printStackTrace();
+			}
 		} else {
 			writer.append("ERROR: ").append(itemName).append(" cannot be found");
 			writer.append(System.lineSeparator());
@@ -185,11 +224,23 @@ public class Store implements IStore {
 	 * Finds an item and writes its quantity and aisle to the output file.
 	 */
 	private void findItem(String[] tokens, StringBuilder writer) throws IOException {
-		String itemName = tokens[1].replaceAll("'", "");
+		String itemName = tokens[1];
 		Item item = inventory.get(itemName);
 		if (item != null) {
 			writer.append(item.getQuantity()).append(" ").append(itemName).append(" are available in ").append(item.getAisle());
 			writer.append(System.lineSeparator());
+
+			try {
+				LocalDateTime currentDateTime = LocalDateTime.now();
+				String formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+				String divider = "########################################";
+				String message = "Item located " + formattedDateTime;
+				FileUtils.writeLineToOutputFile(divider);
+				FileUtils.writeLineToOutputFile(message);
+			} catch (IOException e) {
+				System.out.println("Error occurred while saving completion message to file.");
+				e.printStackTrace();
+			}
 		} else {
 			writer.append("ERROR: ").append(itemName).append(" cannot be found");
 			writer.append(System.lineSeparator());
@@ -200,11 +251,24 @@ public class Store implements IStore {
 	 * Fires a staff member.
 	 */
 	private void fireStaff(String[] tokens, StringBuilder writer) throws IOException {
-		String staffName = tokens[1].replaceAll("'", "");
-		Staff staff = staffMembers.remove(staffName);
+		String staffNameFirst = tokens[1].replaceAll("'", "");
+		String staffNameLast = tokens[2].replaceAll("'", "");
+		String staffName = staffNameFirst + " " + staffNameLast;
+		Staff staff = staffMembers.remove (staffName);
 		if (staff != null) {
 			writer.append(staffName).append(" was fired");
 			writer.append(System.lineSeparator());
+			try {
+				LocalDateTime currentDateTime = LocalDateTime.now();
+				String formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+				String divider = "########################################";
+				String message = "Person fired and Staff updated " + formattedDateTime;
+				FileUtils.writeLineToOutputFile(divider);
+				FileUtils.writeLineToOutputFile(message);
+			} catch (IOException e) {
+				System.out.println("Error occurred while saving completion message to file.");
+				e.printStackTrace();
+			}
 		} else {
 			writer.append("ERROR: ").append(staffName).append(" cannot be found");
 			writer.append(System.lineSeparator());
@@ -225,19 +289,43 @@ public class Store implements IStore {
 		staffMembers.put(staffName, new Staff(staffName, age, role, availability));
 		writer.append(staffName).append(" has been hired as a ").append(role);
 		writer.append(System.lineSeparator());
+		try {
+			LocalDateTime currentDateTime = LocalDateTime.now();
+			String formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+			String divider = "########################################";
+			String message = "Staff updated " + formattedDateTime;
+			FileUtils.writeLineToOutputFile(divider);
+			FileUtils.writeLineToOutputFile(message);
+		} catch (IOException e) {
+			System.out.println("Error occurred while saving completion message to file.");
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * Promotes or demotes a staff member.
 	 */
 	private void promoteStaff(String[] tokens, StringBuilder writer) throws IOException {
-		String staffName = tokens[1].replaceAll("'", "");
-		String newRole = getRoleString(tokens[2]);
+		String staffNameFirst = tokens[1].replaceAll("'", "");
+		String staffNameLast = tokens[2].replaceAll("'", "");
+		String staffName = staffNameFirst + " " + staffNameLast;
+		String newRole = getRoleString(tokens[3]);
 		Staff staff = staffMembers.get(staffName);
 		if (staff != null) {
 			staffMembers.put(staffName, new Staff(staffName, staff.getAge(), newRole, staff.getAvailability()));
 			writer.append(staffName).append(" was promoted to ").append(newRole);
 			writer.append(System.lineSeparator());
+			try {
+				LocalDateTime currentDateTime = LocalDateTime.now();
+				String formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+				String divider = "########################################";
+				String message = "Person promoted " + formattedDateTime;
+				FileUtils.writeLineToOutputFile(divider);
+				FileUtils.writeLineToOutputFile(message);
+			} catch (IOException e) {
+				System.out.println("Error occurred while saving completion message to file.");
+				e.printStackTrace();
+			}
 		} else {
 			writer.append("ERROR: ").append(staffName).append(" cannot be found");
 			writer.append(System.lineSeparator());
@@ -256,6 +344,18 @@ public class Store implements IStore {
 			inventory.put(itemName, new Item(itemName, item.getPrice(), newQuantity, item.getAisle()));
 			writer.append(quantity).append(" ").append(itemName).append(" was sold");
 			writer.append(System.lineSeparator());
+
+			try {
+				LocalDateTime currentDateTime = LocalDateTime.now();
+				String formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+				String divider = "########################################";
+				String message = "Item sold " + formattedDateTime;
+				FileUtils.writeLineToOutputFile(divider);
+				FileUtils.writeLineToOutputFile(message);
+			} catch (IOException e) {
+				System.out.println("Error occurred while saving completion message to file.");
+				e.printStackTrace();
+			}
 		} else {
 			writer.append("ERROR: ").append(itemName).append(" could not be sold");
 			writer.append(System.lineSeparator());
@@ -271,6 +371,18 @@ public class Store implements IStore {
 		if (item != null) {
 			writer.append(String.valueOf(item.getQuantity()));
 			writer.append(System.lineSeparator());
+
+			try {
+				LocalDateTime currentDateTime = LocalDateTime.now();
+				String formattedDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+				String divider = "########################################";
+				String message = "Quantity received " + formattedDateTime;
+				FileUtils.writeLineToOutputFile(divider);
+				FileUtils.writeLineToOutputFile(message);
+			} catch (IOException e) {
+				System.out.println("Error occurred while saving completion message to file.");
+				e.printStackTrace();
+			}
 		} else {
 			writer.append("ERROR: ").append(itemName).append(" cannot be found");
 			writer.append(System.lineSeparator());
@@ -296,6 +408,7 @@ public class Store implements IStore {
 	private void sawPlanks(StringBuilder writer) {
 		SawPrimePlanks sawPrimePlanks = new SawPrimePlanks();
 		sawPrimePlanks.sawPrimePlanks();
+
 	}
 
 	private void createSchedule(StringBuilder writer) {
@@ -329,9 +442,19 @@ public class Store implements IStore {
 				case "EXIT":
 					output.append("Thank you for visiting High's Hardware and Gardening!");
 					output.append(System.lineSeparator());
+
+					// Write the contents of the output StringBuilder to the file
+					try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/edu/iu/c212/resources/output.txt", true))) {
+						writer.write(output.toString());
+						writer.flush();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
 					System.out.println("Press enter to continue...");
 					try {
 						System.in.read();
+						System.exit(0);
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -364,12 +487,6 @@ public class Store implements IStore {
 					output.append("Invalid command: ").append(command);
 					output.append(System.lineSeparator());
 			}
-		}
-
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/edu/iu/c212/resources/output.txt"))) {
-			writer.write(output.toString());
-		} catch (IOException e) {
-			System.err.println("Error writing output file: " + e.getMessage());
 		}
 	}
 	public static void main(String[] args) throws IOException {
