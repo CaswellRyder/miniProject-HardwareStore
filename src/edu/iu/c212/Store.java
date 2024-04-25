@@ -26,35 +26,44 @@ public class Store implements IStore {
 		}
 	}
 
-	public List<String> getItemsFromFile() {
+	@Override
+	public List<Item> getItemsFromFile(){
 		FileUtils temp = new FileUtils();
-		List<String> ans = null;
+		List<Item> ans = null;
+		List<String> tempArr = null;
 		try {
-			ans = temp.readInventoryFromFile();
-		} catch (IOException e) {
-			System.err.println("Error reading inventory file: " + e.getMessage());
-			System.exit(1);
+			tempArr = temp.readInventoryFromFile();
+		}
+		catch(IOException e) {
+			System.exit(0);
+		}
+		for (String info : tempArr){
+			String [] itemInfo = info.split(",");
+			ans.add(new Item(itemInfo[0], Double.parseDouble(itemInfo[1]), Integer.parseInt(itemInfo[2]), Integer.parseInt(itemInfo[3])));
 		}
 		return ans;
 	}
 
-	public List<Staff> getStaffFromFile() {
+	@Override
+	public List<Staff> getStaffFromFile(){
 		FileUtils temp = new FileUtils();
 		List<Staff> ans = null;
 		try {
 			ans = temp.readStaffFromFile();
-		} catch (IOException e) {
-			System.err.println("Error reading staff file: " + e.getMessage());
-			System.exit(1);
+		}
+		catch(IOException e) {
+			System.exit(0);
 		}
 		return ans;
 	}
 
+	@Override
 	public void saveItemsToFile() {
 		FileUtils temp = new FileUtils();
 		temp.writeInventoryToFile(inventory.values());
 	}
 
+	@Override
 	public void saveStaffToFile() {
 		FileUtils temp = new FileUtils();
 		temp.writeStaffToFile(staffMembers.values());
@@ -258,7 +267,7 @@ public class Store implements IStore {
 		StaffScheduler staffScheduler = new StaffScheduler();
 		staffScheduler.scheduleStaff();
 	}
-
+	@Override
 	public void takeAction() throws IOException {
 		FileUtils commands = new FileUtils();
 		List<String> comms;
