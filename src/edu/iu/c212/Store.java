@@ -26,45 +26,71 @@ public class Store implements IStore {
 		}
 	}
 
-	public List<String> getItemsFromFile() {
+	@Override
+	public List<Item> getItemsFromFile(){
 		FileUtils temp = new FileUtils();
-		List<String> ans = null;
+		List<Item> ans = null;
+		List<String> tempArr = null;
 		try {
-			ans = temp.readInventoryFromFile();
-		} catch (IOException e) {
-			System.err.println("Error reading inventory file: " + e.getMessage());
-			System.exit(1);
+			tempArr = temp.readInventoryFromFile();
+		}
+		catch(IOException e) {
+			System.exit(0);
+		}
+		for (String info : tempArr){
+			String [] itemInfo = info.split(",");
+			ans.add(new Item(itemInfo[0], Double.parseDouble(itemInfo[1]), Integer.parseInt(itemInfo[2]), Integer.parseInt(itemInfo[3])));
 		}
 		return ans;
 	}
 
-	public List<Staff> getStaffFromFile() {
+	@Override
+	public List<Staff> getStaffFromFile(){
 		FileUtils temp = new FileUtils();
 		List<Staff> ans = null;
 		try {
 			ans = temp.readStaffFromFile();
-		} catch (IOException e) {
-			System.err.println("Error reading staff file: " + e.getMessage());
-			System.exit(1);
+		}
+		catch(IOException e) {
+			System.exit(0);
 		}
 		return ans;
 	}
-
-	public void saveItemsToFile() {
+	@Override
+	public void saveItemsFromFile() {
 		FileUtils temp = new FileUtils();
-		temp.writeInventoryToFile(inventory.values());
+		List<String> val = null;
+		try {
+			val = temp.readInventoryFromFile();
+			temp.writeInventoryToFile(val);
+		}
+		catch(IOException e) {
+			System.exit(0);
+		}
 	}
 
-	public void saveStaffToFile() {
+	public void saveStaffFromFile() {
 		FileUtils temp = new FileUtils();
-		temp.writeStaffToFile(staffMembers.values());
+		try{
+			temp.writeStaffToFile(temp.readStaffFromFile());
+		}
+		catch(IOException e){
+			System.exit(0);
+		}
 	}
 
 	/**
 	 * Loads the inventory from the specified file.
 	 */
 	private void loadInventory(String filename) {
-		List<String> itemLines = getItemsFromFile();
+		FileUtils temp = new FileUtils();
+		List<String> itemLines = null;
+		try{
+			itemLines = temp.readInventoryFromFile();
+		}
+		catch(IOException e){
+
+		}
 		if (itemLines != null) {
 			for (String line : itemLines) {
 				String[] tokens = line.split(",");
@@ -86,11 +112,11 @@ public class Store implements IStore {
 		try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
-				String[] tokens = line.split(",");
-				String staffName = tokens[0];
-				int age = Integer.parseInt(tokens[1]);
-				String role = tokens[2];
-				String availability = tokens[3];
+				String[] tokens = line.split(" ");
+				String staffName = tokens[0] + " " + tokens[1];
+				int age = Integer.parseInt(tokens[2]);
+				String role = tokens[3];
+				String availability = tokens[4];
 				staffMembers.put(staffName, new Staff(staffName, age, role, availability));
 			}
 		} catch (IOException e) {
@@ -116,13 +142,28 @@ public class Store implements IStore {
 	 * Adds a new item to the inventory.
 	 */
 	private void addItem(String[] tokens, StringBuilder writer) throws IOException {
-		String itemName = tokens[1].replaceAll("'", "");
-		double itemCost = Double.parseDouble(tokens[2]);
-		int itemQuantity = Integer.parseInt(tokens[3]);
-		int itemAisle = Integer.parseInt(tokens[4]);
-		inventory.put(itemName, new Item(itemName, itemCost, itemQuantity, itemAisle));
-		writer.append(itemName).append(" was added to inventory");
-		writer.append(System.lineSeparator());
+		// Find the index of the last quote
+		int lastQuoteIndex = tokens[0].lastIndexOf("'");
+
+		if (lastQuoteIndex != -1 && lastQuoteIndex > 0) {
+			// Extract the item name (excluding the quotes)
+			String itemName = tokens[0].substring(1, lastQuoteIndex);
+
+			// Split the remaining tokens (price, quantity, aisle) by whitespace
+			String[] remainingTokens = tokens[0].substring(lastQuoteIndex + 1).trim().split("\\s+");
+
+			double itemCost = Double.parseDouble(remainingTokens[0]);
+			int itemQuantity = Integer.parseInt(remainingTokens[1]);
+			int itemAisle = Integer.parseInt(remainingTokens[2]);
+
+			inventory.put(itemName, new Item(itemName, itemCost, itemQuantity, itemAisle));
+			writer.append(itemName).append(" was added to inventory");
+			writer.append(System.lineSeparator());
+		} else {
+			// Handle the case when the input format is invalid
+			writer.append("Invalid input format for adding an item");
+			writer.append(System.lineSeparator());
+		}
 	}
 
 	/**
@@ -173,10 +214,13 @@ public class Store implements IStore {
 	/**
 	 * Hires a new staff member.
 	 */
+
 	private void hireStaff(String[] tokens, StringBuilder writer) throws IOException {
-		String staffName = tokens[1].replaceAll("'", "");
-		int age = Integer.parseInt(tokens[2]);
-		String role = getRoleString(tokens[3]);
+		String staffNameFirst = tokens[1].replaceAll("'", "");
+		String staffNameLast = tokens[2].replaceAll("'", "");
+		String staffName = staffNameFirst + " " + staffNameLast;
+		int age = Integer.parseInt(tokens[3]);
+		String role = getRoleString(tokens[4]);
 		String availability = tokens[4];
 		staffMembers.put(staffName, new Staff(staffName, age, role, availability));
 		writer.append(staffName).append(" has been hired as a ").append(role);
@@ -258,7 +302,7 @@ public class Store implements IStore {
 		StaffScheduler staffScheduler = new StaffScheduler();
 		staffScheduler.scheduleStaff();
 	}
-
+	@Override
 	public void takeAction() throws IOException {
 		FileUtils commands = new FileUtils();
 		List<String> comms;

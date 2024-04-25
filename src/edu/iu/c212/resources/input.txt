@@ -7,7 +7,7 @@ FIND ‘Hand Truck’
 SELL ‘Hammer’ 1
 QUANTITY ‘Paint Can’
 FIRE ‘Joshua Filler’
-HIRE 'Lewis hamilton' 35 G
+HIRE 'Lewis hamiltton' 35 G
 PROMOTE 'Lewis hamilton' M
 SCHEDULE
 SAW
@@ -23,7 +23,7 @@ FIND ‘Digging Forks’
 SELL ‘Pilers’ 2
 QUANTITY ‘Cutter’
 FIRE ‘Will Boland’
-HIRE 'Michael Scott' 28 C
+HIRE 'Michael Scottt' 28 C
 PROMOTE 'Michael Scott' G
 SCHEDULE
 SAW

@@ -1,0 +1,8 @@
+Created on 04/24/2024 at 953
+M [(Catherine G), (Amanda S), (Kenneth W), (Anthony M), (Jack S)]
+T [(Jason H), (Catherine G), (Amanda S), (Earl E), (Kenneth W), (Carolyn P)]
+W [(Catherine G), (Amanda S), (Kenneth W), (Lisa R), (Anthony M), (Jack S)]
+TR [(Jason H), (Amanda S), (Earl E), (Lisa R), (Wanda F)]
+F [(Catherine G), (Earl E), (Kenneth W), (Carolyn P), (Lisa R), (Anthony M)]
+SAT [(Jason H), (Catherine G), (Earl E), (Carolyn P)]
+SUN [(Jason H), (Earl E), (Carolyn P), (Anthony M), (Wanda F)]

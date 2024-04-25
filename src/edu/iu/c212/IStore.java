@@ -1,18 +1,18 @@
 package edu.iu.c212;
+import edu.iu.c212.models.Item;
 import edu.iu.c212.models.Staff;
 
 import java.io.IOException;
 import java.util.List;
 
-
 public interface IStore {
-	List<String> getItemsFromFile();
+	List<Item> getItemsFromFile();
 
 	List<Staff> getStaffFromFile();
 
-	void saveItemsToFile();
+	void saveItemsFromFile();
 
-	void saveStaffToFile();
+	void saveStaffFromFile();
 
 	void takeAction() throws IOException;
 }
