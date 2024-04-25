@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public interface IStore {
-	List<String> getItemsFromFile();
+	List<Item> getItemsFromFile();
 
 	List<Staff> getStaffFromFile();
 
